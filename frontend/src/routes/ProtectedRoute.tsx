@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom";
 
 interface IProp {
   Component: React.ComponentType;
+  isProtected?: boolean;
 }
-const ProtectedRoute = ({ Component }: IProp) => {
+const ProtectedRoute = ({ Component, isProtected }: IProp) => {
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("jwtToken");
-    if (!token) {
+    if (!token && isProtected) {
       navigate("/");
     }
   }, []);

@@ -12,6 +12,7 @@ const LocalRoutes = [
   {
     path: "/home",
     Component: Home,
+    isProtected: true,
   },
   {
     path: "*",
