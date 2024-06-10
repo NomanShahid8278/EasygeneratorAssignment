@@ -20,9 +20,10 @@ const SignUpForm = () => {
 
   const onSubmit: SubmitHandler<ISignUp> = async (data) => {
     signUpService(data)
-      .then(() => {
+      .then((res) => {
         toast("Successfully signed up", { type: "success" });
         navigate("/home");
+        localStorage.setItem("jwtToken", res.token);
       })
       .catch((err) => {});
   };
@@ -41,6 +42,7 @@ const SignUpForm = () => {
         <label htmlFor="email">Email Address</label>
         <input
           {...register("email")}
+          type="email"
           placeholder="Email Address"
           className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
         />
